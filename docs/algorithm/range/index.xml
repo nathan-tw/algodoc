@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>algodoc</title>
+    <link>https://nathan-tw.github.io/algodoc/docs/algorithm/range/</link>
+    <description>Recent content on algodoc</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="https://nathan-tw.github.io/algodoc/docs/algorithm/range/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Binary Index Tree</title>
+      <link>https://nathan-tw.github.io/algodoc/docs/algorithm/range/bit/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://nathan-tw.github.io/algodoc/docs/algorithm/range/bit/</guid>
+      <description> Binary Index Tree (Fenwick Tree) # c&amp;#43;&amp;#43; using LL = long long; class BIT { private: vector&amp;lt;int&amp;gt; tree; int n; public: BIT(int n_){ tree = vector&amp;lt;int&amp;gt;(n_, 0); n = n_; } void update(int idx, int delta) { for(idx = idx+1; idx&amp;lt;n; idx+=idx&amp;amp;(-idx)) tree[idx]+=delta; } LL prefixSum(int idx) { LL sum = 0; for(idx = idx+1; idx&amp;gt;0; idx-=idx&amp;amp;(-idx)) sum += tree[idx]; return sum; } }; </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://nathan-tw.github.io/algodoc/docs/algorithm/range/segtree/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://nathan-tw.github.io/algodoc/docs/algorithm/range/segtree/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
