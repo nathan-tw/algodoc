@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="466. Arithmetic Slices II - Subsequence # 1235. Maximum Profit in Job Scheduling We have n jobs, where every job is scheduled to be done from startTime[i] to endTime[i], obtaining a profit of profit[i].
+You&rsquo;re given the startTime, endTime and profit arrays, return the maximum profit you can take such that there are no two jobs in the subset with overlapping time range.
+If you choose a job that ends at time X you will be able to start another job that starts at time X.">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="1235. Maximum Profit in Job Scheduling" />
+<meta property="og:description" content="466. Arithmetic Slices II - Subsequence # 1235. Maximum Profit in Job Scheduling We have n jobs, where every job is scheduled to be done from startTime[i] to endTime[i], obtaining a profit of profit[i].
+You&rsquo;re given the startTime, endTime and profit arrays, return the maximum profit you can take such that there are no two jobs in the subset with overlapping time range.
+If you choose a job that ends at time X you will be able to start another job that starts at time X." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/docs/leetcode/hard/1235/" /><meta property="article:section" content="docs" />
+
+
+<title>1235. Maximum Profit in Job Scheduling | algodoc</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css" integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/en.search.min.866368cdbfa774c9d1a93b9fceb10c2b4718af23c6dad39188b73d9755d5bff3.js" integrity="sha256-hmNozb&#43;ndMnRqTufzrEMK0cYryPG2tORiLc9l1XVv/M=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>algodoc</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>Leetcode</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-42eecace07f2c55adbf8c2fda3b6b016" class="toggle" checked />
+    <label for="section-42eecace07f2c55adbf8c2fda3b6b016" class="flex justify-between">
+      <a role="button" class="">Hard</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/leetcode/hard/1235/" class="active">1235. Maximum Profit in Job Scheduling</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/leetcode/hard/446/" class="">466. Arithmetic Slices II - Subsequence</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>1235. Maximum Profit in Job Scheduling</strong>
+
+  <label for="toc-control">
+    
+  </label>
+</div>
+
+
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="466-arithmetic-slices-ii---subsequence">
+  466. Arithmetic Slices II - Subsequence
+  <a class="anchor" href="#466-arithmetic-slices-ii---subsequence">#</a>
+</h1>
+<details open><summary><a href="https://leetcode.com/problems/maximum-profit-in-job-scheduling/">1235. Maximum Profit in Job Scheduling</a></summary>
+  <div class="markdown-inner">
+    <p>We have n jobs, where every job is scheduled to be done from <code>startTime[i]</code> to <code>endTime[i]</code>, obtaining a profit of <code>profit[i]</code>.</p>
+<p>You&rsquo;re given the startTime, endTime and profit arrays, return the maximum profit you can take such that there are no two jobs in the subset with overlapping time range.</p>
+<p>If you choose a job that ends at time X you will be able to start another job that starts at time X.</p>
+
+  </div>
+</details>
+
+<h2 id="解題思路">
+  解題思路
+  <a class="anchor" href="#%e8%a7%a3%e9%a1%8c%e6%80%9d%e8%b7%af">#</a>
+</h2>
+<ol>
+<li>
+<p>每個工作都有兩種選擇，做或者不做。</p>
+<ul>
+<li>做：total profit += job porfit</li>
+<li>不做：nothing changed</li>
+</ul>
+</li>
+<li>
+<p>如何選擇做不做呢？可以將工作以結束時間排序，記錄下每個結束時間的最大獲利，每次決定是否要執行當前工作時，只要找到<strong>結束時間小於等於當前開始時間</strong>的最大獲利，和上個結束時間最大獲利比較，就可以決定要不要做了。</p>
+<pre tabindex="0"><code>dp[i] = max(dp[j]+profit, dp[i-1]) 
+// j 是結束時間小於等於當前開始時間的位置
+</code></pre></li>
+<li>
+<p>因為最大獲利根據結束時間是遞增的，可以用二元搜索找到。</p>
+</li>
+</ol>
+<h2 id="解法dpbinary-search">
+  解法：DP+Binary Search
+  <a class="anchor" href="#%e8%a7%a3%e6%b3%95dpbinary-search">#</a>
+</h2>
+
+
+
+
+<div class="book-tabs"><input type="radio" class="toggle" name="tabs-uniqueid" id="tabs-uniqueid-0" checked="checked" />
+  <label for="tabs-uniqueid-0">c&#43;&#43;</label>
+  <div class="book-tabs-content markdown-inner"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span> {
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> jobScheduling(vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;&amp;</span> startTime, vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;&amp;</span> endTime, vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;&amp;</span> profit) {
+</span></span><span style="display:flex;"><span>        vector<span style="color:#f92672">&lt;</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;&gt;</span> jobs;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> startTime.size(); i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>            jobs.push_back({endTime[i], startTime[i], profit[i]});
+</span></span><span style="display:flex;"><span>        sort(jobs.begin(), jobs.end()); <span style="color:#75715e">// 根據結束時間排序
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        map<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> dp <span style="color:#f92672">=</span> {{<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>}};
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">auto</span> job: jobs) {
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 找到小於等於開始時間的最晚結束時間，並計算獲利
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#66d9ef">int</span> cur <span style="color:#f92672">=</span> prev(dp.upper_bound(job[<span style="color:#ae81ff">1</span>]))<span style="color:#f92672">-&gt;</span>second <span style="color:#f92672">+</span> job[<span style="color:#ae81ff">2</span>]; 
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 比較如果做了這個工作和不做的獲利
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#66d9ef">if</span> (cur <span style="color:#f92672">&gt;</span> dp.rbegin()<span style="color:#f92672">-&gt;</span>second)
+</span></span><span style="display:flex;"><span>                dp[job[<span style="color:#ae81ff">0</span>]] <span style="color:#f92672">=</span> cur;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> dp.rbegin()<span style="color:#f92672">-&gt;</span>second;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div></div><input type="radio" class="toggle" name="tabs-uniqueid" id="tabs-uniqueid-1"  />
+  <label for="tabs-uniqueid-1">python</label>
+  <div class="book-tabs-content markdown-inner"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">jobScheduling</span>(self, startTime, endTime, profit):
+</span></span><span style="display:flex;"><span>        jobs <span style="color:#f92672">=</span> sorted(zip(startTime, endTime, profit), key<span style="color:#f92672">=</span><span style="color:#66d9ef">lambda</span> v: v[<span style="color:#ae81ff">1</span>])
+</span></span><span style="display:flex;"><span>        dp <span style="color:#f92672">=</span> [[<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>]]
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> s, e, p <span style="color:#f92672">in</span> jobs:
+</span></span><span style="display:flex;"><span>            i <span style="color:#f92672">=</span> bisect<span style="color:#f92672">.</span>bisect(dp, [s<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>])<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> dp[i][<span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> p <span style="color:#f92672">&gt;</span> dp[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">1</span>]:
+</span></span><span style="display:flex;"><span>                dp<span style="color:#f92672">.</span>append([e, dp[i][<span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> p])
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> dp[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">1</span>]
+</span></span></code></pre></div></div></div>
+
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
