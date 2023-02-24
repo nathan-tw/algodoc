@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Introduction on algodoc</title>
-    <link>https://nathan-tw.github.io/</link>
+    <link>https://nathan-tw.github.io/algodoc/</link>
     <description>Recent content in Introduction on algodoc</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://nathan-tw.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language><atom:link href="https://nathan-tw.github.io/algodoc/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>1235. Maximum Profit in Job Scheduling</title>
-      <link>https://nathan-tw.github.io/docs/leetcode/hard/1235/</link>
+      <link>https://nathan-tw.github.io/algodoc/docs/leetcode/hard/1235/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://nathan-tw.github.io/docs/leetcode/hard/1235/</guid>
+      <guid>https://nathan-tw.github.io/algodoc/docs/leetcode/hard/1235/</guid>
       <description>466. Arithmetic Slices II - Subsequence # 1235. Maximum Profit in Job Scheduling We have n jobs, where every job is scheduled to be done from startTime[i] to endTime[i], obtaining a profit of profit[i].
 You&amp;rsquo;re given the startTime, endTime and profit arrays, return the maximum profit you can take such that there are no two jobs in the subset with overlapping time range.
 If you choose a job that ends at time X you will be able to start another job that starts at time X.</description>
@@ -19,10 +19,10 @@ If you choose a job that ends at time X you will be able to start another job th
     
     <item>
       <title>466. Arithmetic Slices II - Subsequence</title>
-      <link>https://nathan-tw.github.io/docs/leetcode/hard/446/</link>
+      <link>https://nathan-tw.github.io/algodoc/docs/leetcode/hard/446/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://nathan-tw.github.io/docs/leetcode/hard/446/</guid>
+      <guid>https://nathan-tw.github.io/algodoc/docs/leetcode/hard/446/</guid>
       <description>466. Arithmetic Slices II - Subsequence # 466. Arithmetic Slices II - Subsequence Given an integer array nums, return the number of all the arithmetic subsequences of nums.
 給定一個陣列，找出子序列為等差數列的數量。
 A sequence of numbers is called arithmetic if it consists of at least three elements and if the difference between any two consecutive elements is the same.
