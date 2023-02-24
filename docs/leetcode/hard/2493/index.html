@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="2493. Divide Nodes Into the Maximum Number of Groups You are given a positive integer n representing the number of nodes in an undirected graph. The nodes are labeled from 1 to n.
+You are also given a 2D integer array edges, where edges[i] = [ai, bi] indicates that there is a bidirectional edge between nodes ai and bi. Notice that the given graph may be disconnected. Divide the nodes of the graph into m groups (1-indexed) such that:">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="2493. Divide Nodes Into the Maximum Number of Groups" />
+<meta property="og:description" content="2493. Divide Nodes Into the Maximum Number of Groups You are given a positive integer n representing the number of nodes in an undirected graph. The nodes are labeled from 1 to n.
+You are also given a 2D integer array edges, where edges[i] = [ai, bi] indicates that there is a bidirectional edge between nodes ai and bi. Notice that the given graph may be disconnected. Divide the nodes of the graph into m groups (1-indexed) such that:" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://nathan-tw.github.io/algodoc/docs/leetcode/hard/2493/" /><meta property="article:section" content="docs" />
+
+
+<title>2493. Divide Nodes Into the Maximum Number of Groups | algodoc</title>
+<link rel="manifest" href="/algodoc/manifest.json">
+<link rel="icon" href="/algodoc/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/algodoc/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css" integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin="anonymous">
+  <script defer src="/algodoc/flexsearch.min.js"></script>
+  <script defer src="/algodoc/en.search.min.cb56d5396fcfa566fb3940783134a3970915cdd9459165dbdb14605f2d11289a.js" integrity="sha256-y1bVOW/PpWb7OUB4MTSjlwkVzdlFkWXb2xRgXy0RKJo=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/algodoc/"><span>algodoc</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>Algorithm</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-ad90ab22a83804186eee37886e7f2d07" class="toggle"  />
+    <label for="section-ad90ab22a83804186eee37886e7f2d07" class="flex justify-between">
+      <a role="button" class="">Range</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/algodoc/docs/algorithm/range/bit/" class="">Binary Index Tree</a>
+  
+
+        </li>
+      
+    
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>Leetcode</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-42eecace07f2c55adbf8c2fda3b6b016" class="toggle" checked />
+    <label for="section-42eecace07f2c55adbf8c2fda3b6b016" class="flex justify-between">
+      <a role="button" class="">Hard</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/algodoc/docs/leetcode/hard/1235/" class="">1235. Maximum Profit in Job Scheduling</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/algodoc/docs/leetcode/hard/2407/" class="">2407. Longest Increasing Subsequence II</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/algodoc/docs/leetcode/hard/2493/" class="active">2493. Divide Nodes Into the Maximum Number of Groups</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/algodoc/docs/leetcode/hard/446/" class="">466. Arithmetic Slices II - Subsequence</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/algodoc/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>2493. Divide Nodes Into the Maximum Number of Groups</strong>
+
+  <label for="toc-control">
+    
+  </label>
+</div>
+
+
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><details open><summary><a href="https://leetcode.com/problems/divide-nodes-into-the-maximum-number-of-groups/">2493. Divide Nodes Into the Maximum Number of Groups</a></summary>
+  <div class="markdown-inner">
+    <p>You are given a positive integer n representing the number of nodes in an undirected graph. The nodes are labeled from 1 to n.</p>
+<p>You are also given a 2D integer array edges, where <code>edges[i] = [ai, bi]</code> indicates that there is a bidirectional edge between nodes ai and bi. Notice that the given graph may be disconnected.
+Divide the nodes of the graph into m groups (1-indexed) such that:</p>
+<ul>
+<li>Each node in the graph belongs to exactly one group.</li>
+<li>For every pair of nodes in the graph that are connected by an edge [ai, bi], if ai belongs to the group with index x, and bi belongs to the group with index y, then |y - x| = 1.</li>
+</ul>
+<p>Return the maximum number of groups (i.e., maximum m) into which you can divide the nodes. Return -1 if it is impossible to group the nodes with the given conditions.</p>
+<h4 id="example-1">
+  Example 1:
+  <a class="anchor" href="#example-1">#</a>
+</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-md" data-lang="md"><span style="display:flex;"><span>Input: n = 6, edges = [[1,2],[1,4],[1,5],[2,6],[2,3],[4,6]]
+</span></span><span style="display:flex;"><span>Output: 4
+</span></span><span style="display:flex;"><span>Explanation: As shown in the image we:
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> Add node 5 to the first group.
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> Add node 1 to the second group.
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> Add nodes 2 and 4 to the third group.
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> Add nodes 3 and 6 to the fourth group.
+</span></span><span style="display:flex;"><span>We can see that every edge is satisfied.
+</span></span><span style="display:flex;"><span>It can be shown that that if we create a fifth group and move any node from the third or fourth group to it, at least on of the edges will not be satisfied.
+</span></span></code></pre></div><h4 id="example-2">
+  Example 2:
+  <a class="anchor" href="#example-2">#</a>
+</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-md" data-lang="md"><span style="display:flex;"><span>Input: n = 3, edges = [[1,2],[2,3],[3,1]]
+</span></span><span style="display:flex;"><span>Output: -1
+</span></span><span style="display:flex;"><span>Explanation: If we add node 1 to the first group, node 2 to the second group, and node 3 to the third group to satisfy the first two edges, we can see that the third edge will not be satisfied.
+</span></span><span style="display:flex;"><span>It can be shown that no grouping is possible.
+</span></span></code></pre></div>
+  </div>
+</details>
+
+<h2 id="解題思路">
+  解題思路
+  <a class="anchor" href="#%e8%a7%a3%e9%a1%8c%e6%80%9d%e8%b7%af">#</a>
+</h2>
+<ol>
+<li>先思考怎樣的情形分群會不成立，可以從範例2看到三個相連的點會失敗，如果四個五個呢？思考一下會發現奇數個節點造成的 cycle 會使得分群失敗，回傳 -1。</li>
+<li>建立所有的 connected conponent，這可以透過 BFS/DFS/UnionFind 實作，每個conponent 會有他可以分群的最大數量，以範例 1 來說就是 5 走到 3或6 的最短距離，也就是 4。</li>
+<li>問題變成了所有 connected conponent 最大的距離總和是多少？可以對每個點做 BFS，過程中順便檢查是否有奇數個節點的 cycle。</li>
+</ol>
+<h2 id="解法unionfindbfs">
+  解法：UnionFind+BFS
+  <a class="anchor" href="#%e8%a7%a3%e6%b3%95unionfindbfs">#</a>
+</h2>
+
+
+
+
+<div class="book-tabs"><input type="radio" class="toggle" name="tabs-uniqueid" id="tabs-uniqueid-0" checked="checked" />
+  <label for="tabs-uniqueid-0">c&#43;&#43;</label>
+  <div class="book-tabs-content markdown-inner"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UnionFind</span> {
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    unordered_map<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> uf;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">find</span>(<span style="color:#66d9ef">int</span> a) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span>(<span style="color:#f92672">!</span>uf.count(a))
+</span></span><span style="display:flex;"><span>            uf[a] <span style="color:#f92672">=</span> a;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span>(uf[a] <span style="color:#f92672">!=</span> a)
+</span></span><span style="display:flex;"><span>            uf[a] <span style="color:#f92672">=</span> find(uf[a]);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> uf[a];
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">merge</span>(<span style="color:#66d9ef">int</span> a, <span style="color:#66d9ef">int</span> b) {
+</span></span><span style="display:flex;"><span>        uf[find(b)] <span style="color:#f92672">=</span> find(a);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span> {
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> magnificentSets(<span style="color:#66d9ef">int</span> n, vector<span style="color:#f92672">&lt;</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;&gt;&amp;</span> edges) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">auto</span> uf <span style="color:#f92672">=</span> UnionFind();
+</span></span><span style="display:flex;"><span>        vector<span style="color:#f92672">&lt;</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;&gt;</span> graph(n<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">auto</span> edge: edges) {
+</span></span><span style="display:flex;"><span>            graph[edge[<span style="color:#ae81ff">0</span>]].push_back(edge[<span style="color:#ae81ff">1</span>]);
+</span></span><span style="display:flex;"><span>            graph[edge[<span style="color:#ae81ff">1</span>]].push_back(edge[<span style="color:#ae81ff">0</span>]);
+</span></span><span style="display:flex;"><span>            uf.merge(edge[<span style="color:#ae81ff">0</span>], edge[<span style="color:#ae81ff">1</span>]);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> max_groups(n<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;</span> n<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>; i<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>            deque<span style="color:#f92672">&lt;</span>pair<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;&gt;</span> queue <span style="color:#f92672">=</span> {{i, <span style="color:#ae81ff">1</span>}};
+</span></span><span style="display:flex;"><span>            vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> visited(n<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>            visited[i] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">while</span>(<span style="color:#f92672">!</span>queue.empty()) {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">auto</span> pop <span style="color:#f92672">=</span> queue.front();
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">int</span> cur <span style="color:#f92672">=</span> pop.first, level <span style="color:#f92672">=</span> pop.second;
+</span></span><span style="display:flex;"><span>                queue.pop_front();
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">auto</span><span style="color:#f92672">&amp;</span> edge: graph[cur]) {
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">if</span>(<span style="color:#f92672">!</span>visited[edge]) {
+</span></span><span style="display:flex;"><span>                        queue.push_back({edge, level<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>});
+</span></span><span style="display:flex;"><span>                        visited[edge] <span style="color:#f92672">=</span> level<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">if</span>(level <span style="color:#f92672">==</span> visited[edge])
+</span></span><span style="display:flex;"><span>                        <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">int</span> root <span style="color:#f92672">=</span> uf.find(i);
+</span></span><span style="display:flex;"><span>                max_groups[root] <span style="color:#f92672">=</span> max(max_groups[root], level);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> res <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> ele: max_groups)
+</span></span><span style="display:flex;"><span>            res<span style="color:#f92672">+=</span>ele;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> res;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div></div><input type="radio" class="toggle" name="tabs-uniqueid" id="tabs-uniqueid-1"  />
+  <label for="tabs-uniqueid-1">python</label>
+  <div class="book-tabs-content markdown-inner"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">magnificentSets</span>(self, n: int, edges: List[List[int]]) <span style="color:#f92672">-&gt;</span> int:
+</span></span><span style="display:flex;"><span>        uf <span style="color:#f92672">=</span> UnionFind()
+</span></span><span style="display:flex;"><span>        graph <span style="color:#f92672">=</span> defaultdict(list)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> e1, e2 <span style="color:#f92672">in</span> edges:
+</span></span><span style="display:flex;"><span>            graph[e1]<span style="color:#f92672">.</span>append(e2)
+</span></span><span style="display:flex;"><span>            graph[e2]<span style="color:#f92672">.</span>append(e1)
+</span></span><span style="display:flex;"><span>            uf<span style="color:#f92672">.</span>union(e1, e2)
+</span></span><span style="display:flex;"><span>        max_groups <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>]<span style="color:#f92672">*</span>(n<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1</span>, n<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>):
+</span></span><span style="display:flex;"><span>            q <span style="color:#f92672">=</span> deque([(i, <span style="color:#ae81ff">1</span>)])
+</span></span><span style="display:flex;"><span>            visited <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>]<span style="color:#f92672">*</span>(n<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>            visited[i] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>            m <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">while</span> q:
+</span></span><span style="display:flex;"><span>                curr, level <span style="color:#f92672">=</span> q<span style="color:#f92672">.</span>popleft()
+</span></span><span style="display:flex;"><span>                m <span style="color:#f92672">=</span> max(m, level)
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">for</span> edge <span style="color:#f92672">in</span> graph[curr]:
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> visited[edge]:
+</span></span><span style="display:flex;"><span>                        q<span style="color:#f92672">.</span>append([edge, level<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>])
+</span></span><span style="display:flex;"><span>                        visited[edge] <span style="color:#f92672">=</span> level<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">if</span> level <span style="color:#f92672">==</span> visited[edge]:
+</span></span><span style="display:flex;"><span>                        <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>            root <span style="color:#f92672">=</span> uf<span style="color:#f92672">.</span>find(i)
+</span></span><span style="display:flex;"><span>            max_groups[root] <span style="color:#f92672">=</span> max(max_groups[root], m)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> sum(max_groups)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UnionFind</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>uf <span style="color:#f92672">=</span> {}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">union</span>(self, a, b):
+</span></span><span style="display:flex;"><span>        roota <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>find(a)
+</span></span><span style="display:flex;"><span>        rootb <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>find(b)
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>uf[rootb] <span style="color:#f92672">=</span> roota
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">find</span>(self, a):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> a <span style="color:#f92672">not</span> <span style="color:#f92672">in</span> self<span style="color:#f92672">.</span>uf:
+</span></span><span style="display:flex;"><span>            self<span style="color:#f92672">.</span>uf[a] <span style="color:#f92672">=</span> a
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>uf[a] <span style="color:#f92672">!=</span> a:
+</span></span><span style="display:flex;"><span>            self<span style="color:#f92672">.</span>uf[a] <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>find(self<span style="color:#f92672">.</span>uf[a])
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>uf[a]
+</span></span></code></pre></div></div></div>
+
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
