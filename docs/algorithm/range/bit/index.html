@@ -8,7 +8,7 @@
 <meta name="color-scheme" content="light dark"><meta property="og:title" content="Binary Index Tree" />
 <meta property="og:description" content=" Binary Index Tree (Fenwick Tree) # c&#43;&#43; using LL = long long; class BIT { private: vector&lt;int&gt; tree; int n; public: BIT(int n_){ tree = vector&lt;int&gt;(n_, 0); n = n_; } void update(int idx, int delta) { for(idx = idx&#43;1; idx&lt;n; idx&#43;=idx&amp;(-idx)) tree[idx]&#43;=delta; } LL prefixSum(int idx) { LL sum = 0; for(idx = idx&#43;1; idx&gt;0; idx-=idx&amp;(-idx)) sum &#43;= tree[idx]; return sum; } }; " />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://nathan-tw.github.io/algodoc/docs/algorithm/range/bit/" /><meta property="article:section" content="docs" />
+<meta property="og:url" content="https://star-67.com/algodoc/docs/algorithm/range/bit/" /><meta property="article:section" content="docs" />
 
 
 <title>Binary Index Tree | algodoc</title>

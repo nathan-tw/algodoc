@@ -16,7 +16,7 @@ Find the longest subsequence of nums that meets the following requirements:
 The subsequence is strictly increasing and The difference between adjacent elements in the subsequence is at most k. Return the length of the longest subsequence that meets the requirements.
 解法一：DP # 建立一個 dp array，dp[i]代表的是以nums[i]做為結尾的 seq 的最大長度，做法是搜尋 dp[0] ~ dp[i-1]，找到最大的 sub-LIS，將其&#43;1 更新dp[i]。但為了滿足相鄰的元素相減必須比k小，需要加入nums[i]-nums[j] &lt;=k判斷。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://nathan-tw.github.io/algodoc/docs/leetcode/hard/2407/" /><meta property="article:section" content="docs" />
+<meta property="og:url" content="https://star-67.com/algodoc/docs/leetcode/hard/2407/" /><meta property="article:section" content="docs" />
 
 
 <title>2407. Longest Increasing Subsequence II | algodoc</title>
