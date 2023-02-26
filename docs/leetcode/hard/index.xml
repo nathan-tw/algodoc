@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>algodoc</title>
-    <link>https://star-67.com/algodoc/docs/leetcode/hard/</link>
+    <link>https://algodoc.star-67.com/docs/leetcode/hard/</link>
     <description>Recent content on algodoc</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://star-67.com/algodoc/docs/leetcode/hard/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language><atom:link href="https://algodoc.star-67.com/docs/leetcode/hard/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>1235. Maximum Profit in Job Scheduling</title>
-      <link>https://star-67.com/algodoc/docs/leetcode/hard/1235/</link>
+      <link>https://algodoc.star-67.com/docs/leetcode/hard/1235/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://star-67.com/algodoc/docs/leetcode/hard/1235/</guid>
+      <guid>https://algodoc.star-67.com/docs/leetcode/hard/1235/</guid>
       <description>466. Arithmetic Slices II - Subsequence # 1235. Maximum Profit in Job Scheduling We have n jobs, where every job is scheduled to be done from startTime[i] to endTime[i], obtaining a profit of profit[i].
 You&amp;rsquo;re given the startTime, endTime and profit arrays, return the maximum profit you can take such that there are no two jobs in the subset with overlapping time range.
 If you choose a job that ends at time X you will be able to start another job that starts at time X.</description>
@@ -19,10 +19,10 @@ If you choose a job that ends at time X you will be able to start another job th
     
     <item>
       <title>2407. Longest Increasing Subsequence II</title>
-      <link>https://star-67.com/algodoc/docs/leetcode/hard/2407/</link>
+      <link>https://algodoc.star-67.com/docs/leetcode/hard/2407/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://star-67.com/algodoc/docs/leetcode/hard/2407/</guid>
+      <guid>https://algodoc.star-67.com/docs/leetcode/hard/2407/</guid>
       <description>2407. Longest Increasing Subsequence II LIS (longest increasing subsequence) 是一個經典的 dp 問題，題目簡述是，給定一個陣列並允許刪除其中某些元素，能夠構成最長的嚴格遞增陣列的長度是多少？本題是基於 LIS 的變化，新增了序列中兩個元素的差 k。
 You are given an integer array nums and an integer k.
 Find the longest subsequence of nums that meets the following requirements:
@@ -32,20 +32,20 @@ The subsequence is strictly increasing and The difference between adjacent eleme
     
     <item>
       <title>2493. Divide Nodes Into the Maximum Number of Groups</title>
-      <link>https://star-67.com/algodoc/docs/leetcode/hard/2493/</link>
+      <link>https://algodoc.star-67.com/docs/leetcode/hard/2493/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://star-67.com/algodoc/docs/leetcode/hard/2493/</guid>
+      <guid>https://algodoc.star-67.com/docs/leetcode/hard/2493/</guid>
       <description>2493. Divide Nodes Into the Maximum Number of Groups You are given a positive integer n representing the number of nodes in an undirected graph. The nodes are labeled from 1 to n.
 You are also given a 2D integer array edges, where edges[i] = [ai, bi] indicates that there is a bidirectional edge between nodes ai and bi. Notice that the given graph may be disconnected. Divide the nodes of the graph into m groups (1-indexed) such that:</description>
     </item>
     
     <item>
       <title>466. Arithmetic Slices II - Subsequence</title>
-      <link>https://star-67.com/algodoc/docs/leetcode/hard/446/</link>
+      <link>https://algodoc.star-67.com/docs/leetcode/hard/446/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://star-67.com/algodoc/docs/leetcode/hard/446/</guid>
+      <guid>https://algodoc.star-67.com/docs/leetcode/hard/446/</guid>
       <description>466. Arithmetic Slices II - Subsequence # 466. Arithmetic Slices II - Subsequence Given an integer array nums, return the number of all the arithmetic subsequences of nums.
 給定一個陣列，找出子序列為等差數列的數量。
 A sequence of numbers is called arithmetic if it consists of at least three elements and if the difference between any two consecutive elements is the same.

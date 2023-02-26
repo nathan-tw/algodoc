@@ -2,9 +2,9 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Docs on algodoc</title>
-    <link>https://star-67.com/algodoc/docs/</link>
+    <link>https://algodoc.star-67.com/docs/</link>
     <description>Recent content in Docs on algodoc</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://star-67.com/algodoc/docs/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language><atom:link href="https://algodoc.star-67.com/docs/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
