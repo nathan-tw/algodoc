@@ -5,7 +5,7 @@ type: docs
 
 # Nathan's Algodoc
 
-Notes for my technical topics.
+Notes for my software topics.
 
 {{< columns >}}
 ## Algorithm
@@ -30,3 +30,24 @@ Notes for my technical topics.
 
 {{< /columns >}}
 
+
+## Todo List
+{{< details "TODO" open >}}
+
+### Operating System
+* CPU Schedule
+### Algorithm
+* Graph
+* String
+    * Trie
+    * Rolling Hash
+
+### System Design
+* MapReduce
+* API tracking
+
+### Technical
+* Container
+* Worker Pool
+
+{{< /details >}}
