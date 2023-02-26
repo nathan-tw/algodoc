@@ -1,4 +1,4 @@
-baseURL = 'https://star-67.com/algodoc/'
+baseURL = 'https://algodoc.star-67.com/'
 languageCode = 'en-us'
 title = 'algodoc'
 theme = 'hugo-book'
