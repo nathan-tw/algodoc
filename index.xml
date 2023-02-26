@@ -12,7 +12,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://algodoc.star-67.com/docs/leetcode/hard/1235/</guid>
-      <description>466. Arithmetic Slices II - Subsequence # 1235. Maximum Profit in Job Scheduling We have n jobs, where every job is scheduled to be done from startTime[i] to endTime[i], obtaining a profit of profit[i].
+      <description>1235. Maximum Profit in Job Scheduling # 1235. Maximum Profit in Job Scheduling We have n jobs, where every job is scheduled to be done from startTime[i] to endTime[i], obtaining a profit of profit[i].
 You&amp;rsquo;re given the startTime, endTime and profit arrays, return the maximum profit you can take such that there are no two jobs in the subset with overlapping time range.
 If you choose a job that ends at time X you will be able to start another job that starts at time X.</description>
     </item>
@@ -23,11 +23,10 @@ If you choose a job that ends at time X you will be able to start another job th
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://algodoc.star-67.com/docs/leetcode/hard/2407/</guid>
-      <description>2407. Longest Increasing Subsequence II LIS (longest increasing subsequence) 是一個經典的 dp 問題，題目簡述是，給定一個陣列並允許刪除其中某些元素，能夠構成最長的嚴格遞增陣列的長度是多少？本題是基於 LIS 的變化，新增了序列中兩個元素的差 k。
+      <description>2407. Longest Increasing Subsequence II # 2407. Longest Increasing Subsequence II LIS (longest increasing subsequence) 是一個經典的 dp 問題，題目簡述是，給定一個陣列並允許刪除其中某些元素，能夠構成最長的嚴格遞增陣列的長度是多少？本題是基於 LIS 的變化，新增了序列中兩個元素的差 k。
 You are given an integer array nums and an integer k.
 Find the longest subsequence of nums that meets the following requirements:
-The subsequence is strictly increasing and The difference between adjacent elements in the subsequence is at most k. Return the length of the longest subsequence that meets the requirements.
-解法一：DP # 建立一個 dp array，dp[i]代表的是以nums[i]做為結尾的 seq 的最大長度，做法是搜尋 dp[0] ~ dp[i-1]，找到最大的 sub-LIS，將其+1 更新dp[i]。但為了滿足相鄰的元素相減必須比k小，需要加入nums[i]-nums[j] &amp;lt;=k判斷。</description>
+The subsequence is strictly increasing and The difference between adjacent elements in the subsequence is at most k. Return the length of the longest subsequence that meets the requirements.</description>
     </item>
     
     <item>
@@ -36,8 +35,8 @@ The subsequence is strictly increasing and The difference between adjacent eleme
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://algodoc.star-67.com/docs/leetcode/hard/2493/</guid>
-      <description>2493. Divide Nodes Into the Maximum Number of Groups You are given a positive integer n representing the number of nodes in an undirected graph. The nodes are labeled from 1 to n.
-You are also given a 2D integer array edges, where edges[i] = [ai, bi] indicates that there is a bidirectional edge between nodes ai and bi. Notice that the given graph may be disconnected. Divide the nodes of the graph into m groups (1-indexed) such that:</description>
+      <description>2493. Divide Nodes Into the Maximum Number of Groups # 2493. Divide Nodes Into the Maximum Number of Groups You are given a positive integer n representing the number of nodes in an undirected graph. The nodes are labeled from 1 to n.
+You are also given a 2D integer array edges, where edges[i] = [ai, bi] indicates that there is a bidirectional edge between nodes ai and bi. Notice that the given graph may be disconnected.</description>
     </item>
     
     <item>
@@ -59,6 +58,24 @@ For example, [1, 3, 5, 7, 9], [7, 7, 7, 7], and [3, -1, -5, -9] are arithmetic s
       
       <guid>https://algodoc.star-67.com/docs/algorithm/range/bit/</guid>
       <description> Binary Index Tree (Fenwick Tree) # c&amp;#43;&amp;#43; using LL = long long; class BIT { private: vector&amp;lt;int&amp;gt; tree; int n; public: BIT(int n_){ tree = vector&amp;lt;int&amp;gt;(n_, 0); n = n_; } void update(int idx, int delta) { for(idx = idx+1; idx&amp;lt;n; idx+=idx&amp;amp;(-idx)) tree[idx]+=delta; } LL prefixSum(int idx) { LL sum = 0; for(idx = idx+1; idx&amp;gt;0; idx-=idx&amp;amp;(-idx)) sum += tree[idx]; return sum; } }; </description>
+    </item>
+    
+    <item>
+      <title>Kadane&#39;s Algorithm</title>
+      <link>https://algodoc.star-67.com/docs/algorithm/dp/kadane/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://algodoc.star-67.com/docs/algorithm/dp/kadane/</guid>
+      <description> Kadane&amp;rsquo;s Algorithm # c&amp;#43;&amp;#43; int maxSubArraySum(int a[], int size) { int max_so_far = INT_MIN, max_ending_here = 0; for (int i = 0; i &amp;lt; size; i++) { max_ending_here = max_ending_here + a[i]; if (max_so_far &amp;lt; max_ending_here) max_so_far = max_ending_here; if (max_ending_here &amp;lt; 0) max_ending_here = 0; } return max_so_far; } </description>
+    </item>
+    
+    <item>
+      <title>UnionFind</title>
+      <link>https://algodoc.star-67.com/docs/algorithm/tree/union_find/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://algodoc.star-67.com/docs/algorithm/tree/union_find/</guid>
+      <description>UnionFind (Disjoint Set) # c&amp;#43;&amp;#43; class UnionFind { public: unordered_map&amp;lt;int, int&amp;gt; uf; int find(int a) { if(!uf.count(a)) uf[a] = a; if(uf[a] != a) uf[a] = find(uf[a]); return uf[a]; } void merge(int a, int b) { uf[find(b)] = find(a); } }; python class UnionFind: def __init__(self): self.uf = {} def union(self, a, b): roota = self.find(a) rootb = self.find(b) self.uf[rootb] = roota def find(self, a): if a not in self.uf: self.</description>
     </item>
     
     <item>

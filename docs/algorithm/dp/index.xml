@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>algodoc</title>
+    <link>https://algodoc.star-67.com/docs/algorithm/dp/</link>
+    <description>Recent content on algodoc</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="https://algodoc.star-67.com/docs/algorithm/dp/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Kadane&#39;s Algorithm</title>
+      <link>https://algodoc.star-67.com/docs/algorithm/dp/kadane/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://algodoc.star-67.com/docs/algorithm/dp/kadane/</guid>
+      <description> Kadane&amp;rsquo;s Algorithm # c&amp;#43;&amp;#43; int maxSubArraySum(int a[], int size) { int max_so_far = INT_MIN, max_ending_here = 0; for (int i = 0; i &amp;lt; size; i++) { max_ending_here = max_ending_here + a[i]; if (max_so_far &amp;lt; max_ending_here) max_so_far = max_ending_here; if (max_ending_here &amp;lt; 0) max_ending_here = 0; } return max_so_far; } </description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,23 +1,22 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
 <head>
-	<meta name="generator" content="Hugo 0.110.0">
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content=" Nathan&rsquo;s Algodoc # Notes for my technical topics.
-Algorithm # Dynamic Programming Range Query Binary Search System Design # Rate Limit Networking # Email &amp; SMTP ">
+<meta name="description" content=" Kadane&rsquo;s Algorithm # c&#43;&#43; int maxSubArraySum(int a[], int size) { int max_so_far = INT_MIN, max_ending_here = 0; for (int i = 0; i &lt; size; i&#43;&#43;) { max_ending_here = max_ending_here &#43; a[i]; if (max_so_far &lt; max_ending_here) max_so_far = max_ending_here; if (max_ending_here &lt; 0) max_ending_here = 0; } return max_so_far; } ">
 <meta name="theme-color" content="#FFFFFF">
-<meta name="color-scheme" content="light dark"><meta property="og:title" content="Nathan&#39;s Algodoc" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://algodoc.star-67.com/" />
-<title>Nathan&#39;s Algodoc | algodoc</title>
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="Kadane&#39;s Algorithm" />
+<meta property="og:description" content=" Kadane&rsquo;s Algorithm # c&#43;&#43; int maxSubArraySum(int a[], int size) { int max_so_far = INT_MIN, max_ending_here = 0; for (int i = 0; i &lt; size; i&#43;&#43;) { max_ending_here = max_ending_here &#43; a[i]; if (max_so_far &lt; max_ending_here) max_so_far = max_ending_here; if (max_ending_here &lt; 0) max_ending_here = 0; } return max_so_far; } " />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://algodoc.star-67.com/docs/algorithm/dp/kadane/" /><meta property="article:section" content="docs" />
+
+
+<title>Kadane&#39;s Algorithm | algodoc</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css" integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
   <script defer src="/en.search.min.c75bcdf8492057c24c097a26ee8f111ec2dc8209ad027340e00a4f4e0d223292.js" integrity="sha256-x1vN&#43;EkgV8JMCXom7o8RHsLcggmtAnNA4ApPTg0iMpI=" crossorigin="anonymous"></script>
-<link rel="alternate" type="application/rss+xml" href="https://algodoc.star-67.com/index.xml" title="algodoc" />
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -82,7 +81,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <input type="checkbox" id="section-fec7bfa09795e0c687542593a3f7424b" class="toggle"  />
+    <input type="checkbox" id="section-fec7bfa09795e0c687542593a3f7424b" class="toggle" checked />
     <label for="section-fec7bfa09795e0c687542593a3f7424b" class="flex justify-between">
       <a role="button" class="">Dp</a>
     </label>
@@ -98,7 +97,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/algorithm/dp/kadane/" class="">Kadane&#39;s Algorithm</a>
+    <a href="/docs/algorithm/dp/kadane/" class="active">Kadane&#39;s Algorithm</a>
   
 
         </li>
@@ -311,74 +310,45 @@ https://github.com/alex-shpak/hugo-book
     <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
 
-  <strong>Nathan&#39;s Algodoc</strong>
+  <strong>Kadane&#39;s Algorithm</strong>
 
   <label for="toc-control">
-    
-    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
     
   </label>
 </div>
 
 
   
-  <aside class="hidden clearfix">
-    
-  
-<nav id="TableOfContents"></nav>
-
-
-
-  </aside>
-  
  
       </header>
 
       
       
-  <article class="markdown"><h1 id="nathans-algodoc">
-  Nathan&rsquo;s Algodoc
-  <a class="anchor" href="#nathans-algodoc">#</a>
+  <article class="markdown"><h1 id="kadanes-algorithm">
+  Kadane&rsquo;s Algorithm
+  <a class="anchor" href="#kadanes-algorithm">#</a>
 </h1>
-<p>Notes for my technical topics.</p>
-<div class="book-columns flex flex-wrap">
 
-  <div class="flex-even markdown-inner">
-    <h2 id="algorithm">
-  Algorithm
-  <a class="anchor" href="#algorithm">#</a>
-</h2>
-<ul>
-<li>Dynamic Programming</li>
-<li>Range Query</li>
-<li>Binary Search</li>
-</ul>
 
-  </div>
 
-  <div class="flex-even markdown-inner">
-    <h2 id="system-design">
-  System Design
-  <a class="anchor" href="#system-design">#</a>
-</h2>
-<ul>
-<li>Rate Limit</li>
-</ul>
 
-  </div>
-
-  <div class="flex-even markdown-inner">
-    <h2 id="networking">
-  Networking
-  <a class="anchor" href="#networking">#</a>
-</h2>
-<ul>
-<li>Email &amp; SMTP</li>
-</ul>
-
-  </div>
-
-</div>
+<div class="book-tabs"><input type="radio" class="toggle" name="tabs-uniqueid" id="tabs-uniqueid-0" checked="checked" />
+  <label for="tabs-uniqueid-0">c&#43;&#43;</label>
+  <div class="book-tabs-content markdown-inner"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">maxSubArraySum</span>(<span style="color:#66d9ef">int</span> a[], <span style="color:#66d9ef">int</span> size)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> max_so_far <span style="color:#f92672">=</span> INT_MIN, max_ending_here <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> size; i<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>        max_ending_here <span style="color:#f92672">=</span> max_ending_here <span style="color:#f92672">+</span> a[i];
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (max_so_far <span style="color:#f92672">&lt;</span> max_ending_here)
+</span></span><span style="display:flex;"><span>            max_so_far <span style="color:#f92672">=</span> max_ending_here;
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (max_ending_here <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>            max_ending_here <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> max_so_far;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></div></div>
 
 </article>
  
@@ -414,17 +384,6 @@ https://github.com/alex-shpak/hugo-book
       <label for="menu-control" class="hidden book-menu-overlay"></label>
     </div>
 
-    
-    <aside class="book-toc">
-      <div class="book-toc-content">
-        
-  
-<nav id="TableOfContents"></nav>
-
-
- 
-      </div>
-    </aside>
     
   </main>
 
