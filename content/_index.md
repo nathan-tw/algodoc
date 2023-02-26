@@ -5,5 +5,28 @@ type: docs
 
 # Nathan's Algodoc
 
-紀錄一些算法心得
+Notes for my technical topics.
+
+{{< columns >}}
+## Algorithm
+
+* Dynamic Programming
+* Range Query
+* Binary Search
+
+<--->
+
+## System Design
+
+* Rate Limit
+
+
+<--->
+
+## Networking
+
+* Email & SMTP
+
+
+{{< /columns >}}
 
