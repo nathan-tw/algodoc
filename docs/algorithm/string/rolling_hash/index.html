@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Rolling Hash # Rolling Hash 是一個字段比對方式，利用移動視窗計算視窗內的 hash 值，將推移視窗的複雜度從 O(n) 降到 O(1)。 做法是將字母視作一個多項式的係數，例如 a~z 對應 1~26，而這個多項式就是 hash function，以 banana 這個字串來說，要找到 ana 這個子字串該怎麼做？
+計算 ana 的 hash 值 h，此時我們需要假設一個質數 x，這裡假設 x=31 ， 計算出 ana 的 h 為1551。 \[H(x) = x^2&#43;19x&#43;1\] 移動長度3的視窗，並同時確認 hash 值是否與 h 相同。每次移動視窗需要執行三個步驟：
+將多項式同乘 base。 將多項式最後一項 (a0) 加上去。 將最高次剪去。 根據上述步驟，從 ban 轉移到 ana 的過程是：
+ban 的 hash值為1972，將多項式乘以 x 得到 61132。 加上 &#39;a&#39;-&#39;a&#39;&#43;1，得到61133。 將 x^3(59582) 減去，得到1551。 c&#43;&#43; using LL = long long; string findSubstring(int len) { unordered_set&lt;LL&gt; seen; LL base = 31, highest_degree_base = 1, hash = 0; for(int i = 0; i &lt; len; i&#43;&#43;) highest_degree_base *= base; for(int i = 0; i &lt; n; i&#43;&#43;) { hash *= base; hash &#43;= s[i]-&#39;a&#39;; if(i &gt;= len) hash -= highest_degree_base * (s[i-len]-&#39;a&#39;); if(i &gt;= len-1) { if(seen.">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="Rolling Hash" />
+<meta property="og:description" content="Rolling Hash # Rolling Hash 是一個字段比對方式，利用移動視窗計算視窗內的 hash 值，將推移視窗的複雜度從 O(n) 降到 O(1)。 做法是將字母視作一個多項式的係數，例如 a~z 對應 1~26，而這個多項式就是 hash function，以 banana 這個字串來說，要找到 ana 這個子字串該怎麼做？
+計算 ana 的 hash 值 h，此時我們需要假設一個質數 x，這裡假設 x=31 ， 計算出 ana 的 h 為1551。 \[H(x) = x^2&#43;19x&#43;1\] 移動長度3的視窗，並同時確認 hash 值是否與 h 相同。每次移動視窗需要執行三個步驟：
+將多項式同乘 base。 將多項式最後一項 (a0) 加上去。 將最高次剪去。 根據上述步驟，從 ban 轉移到 ana 的過程是：
+ban 的 hash值為1972，將多項式乘以 x 得到 61132。 加上 &#39;a&#39;-&#39;a&#39;&#43;1，得到61133。 將 x^3(59582) 減去，得到1551。 c&#43;&#43; using LL = long long; string findSubstring(int len) { unordered_set&lt;LL&gt; seen; LL base = 31, highest_degree_base = 1, hash = 0; for(int i = 0; i &lt; len; i&#43;&#43;) highest_degree_base *= base; for(int i = 0; i &lt; n; i&#43;&#43;) { hash *= base; hash &#43;= s[i]-&#39;a&#39;; if(i &gt;= len) hash -= highest_degree_base * (s[i-len]-&#39;a&#39;); if(i &gt;= len-1) { if(seen." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://algodoc.star-67.com/docs/algorithm/string/rolling_hash/" /><meta property="article:section" content="docs" />
+
+
+<title>Rolling Hash | algodoc</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css" integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/en.search.min.3b78f679dfd0d016e2fb68903ea2f0965499dec6a0cc2b975e87c014b6171c8a.js" integrity="sha256-O3j2ed/Q0Bbi&#43;2iQPqLwllSZ3sagzCuXXofAFLYXHIo=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>algodoc</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <a href="/docs/algorithm/" class="">Algorithm</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-fec7bfa09795e0c687542593a3f7424b" class="toggle"  />
+    <label for="section-fec7bfa09795e0c687542593a3f7424b" class="flex justify-between">
+      <a role="button" class="">Dp</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/algorithm/dp/kadane/" class="">Kadane&#39;s Algorithm</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-ad90ab22a83804186eee37886e7f2d07" class="toggle"  />
+    <label for="section-ad90ab22a83804186eee37886e7f2d07" class="flex justify-between">
+      <a role="button" class="">Range</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/algorithm/range/bit/" class="">Binary Index Tree</a>
+  
+
+        </li>
+      
+    
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-d4f5454e2615a8366aa48d211712ff7c" class="toggle" checked />
+    <label for="section-d4f5454e2615a8366aa48d211712ff7c" class="flex justify-between">
+      <a role="button" class="">String</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/algorithm/string/rolling_hash/" class="active">Rolling Hash</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-73294e4445b3669a47dedbccf2c73bc4" class="toggle"  />
+    <label for="section-73294e4445b3669a47dedbccf2c73bc4" class="flex justify-between">
+      <a role="button" class="">Tree</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/algorithm/tree/union_find/" class="">UnionFind</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>Leetcode</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-42eecace07f2c55adbf8c2fda3b6b016" class="toggle"  />
+    <label for="section-42eecace07f2c55adbf8c2fda3b6b016" class="flex justify-between">
+      <a role="button" class="">Hard</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/leetcode/hard/1235/" class="">1235. Maximum Profit in Job Scheduling</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/leetcode/hard/2407/" class="">2407. Longest Increasing Subsequence II</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/leetcode/hard/2493/" class="">2493. Divide Nodes Into the Maximum Number of Groups</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/leetcode/hard/446/" class="">466. Arithmetic Slices II - Subsequence</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Rolling Hash</strong>
+
+  <label for="toc-control">
+    
+  </label>
+</div>
+
+
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="rolling-hash">
+  Rolling Hash
+  <a class="anchor" href="#rolling-hash">#</a>
+</h1>
+<p>Rolling Hash 是一個字段比對方式，利用移動視窗計算視窗內的 hash 值，將推移視窗的複雜度從 O(n) 降到 O(1)。
+做法是將字母視作一個多項式的係數，例如 a~z 對應 1~26，而這個多項式就是 hash function，以 <strong>banana</strong> 這個字串來說，要找到 <strong>ana</strong> 這個子字串該怎麼做？</p>
+<ol>
+<li>計算 <strong>ana</strong> 的 hash 值 <code>h</code>，此時我們需要假設一個質數 <code>x</code>，這裡假設 <code>x=31</code> ， 計算出 <strong>ana</strong> 的 <code>h</code> 為1551。</li>
+</ol>
+
+<link rel="stylesheet" href="/katex/katex.min.css" />
+<script defer src="/katex/katex.min.js"></script>
+<script defer src="/katex/auto-render.min.js" onload="renderMathInElement(document.body);"></script><span>
+  \[H(x) = x^2&#43;19x&#43;1\]
+</span>
+
+<ol start="2">
+<li>
+<p>移動長度3的視窗，並同時確認 hash 值是否與 <code>h</code> 相同。每次移動視窗需要執行三個步驟：</p>
+<ol>
+<li>將多項式同乘 base。</li>
+<li>將多項式最後一項 (a0) 加上去。</li>
+<li>將最高次剪去。</li>
+</ol>
+<p>根據上述步驟，從 <strong>ban</strong> 轉移到 <strong>ana</strong> 的過程是：</p>
+<ol>
+<li><strong>ban</strong> 的 hash值為1972，將多項式乘以 <code>x</code> 得到 61132。</li>
+<li>加上 <code>'a'-'a'+1</code>，得到61133。</li>
+<li>將 <code>x^3</code>(59582) 減去，得到1551。</li>
+</ol>
+</li>
+</ol>
+
+
+
+
+<div class="book-tabs"><input type="radio" class="toggle" name="tabs-uniqueid" id="tabs-uniqueid-0" checked="checked" />
+  <label for="tabs-uniqueid-0">c&#43;&#43;</label>
+  <div class="book-tabs-content markdown-inner"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#66d9ef">using</span> LL <span style="color:#f92672">=</span> <span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span>;
+</span></span><span style="display:flex;"><span>string <span style="color:#a6e22e">findSubstring</span>(<span style="color:#66d9ef">int</span> len) {
+</span></span><span style="display:flex;"><span>    unordered_set<span style="color:#f92672">&lt;</span>LL<span style="color:#f92672">&gt;</span> seen;
+</span></span><span style="display:flex;"><span>    LL base <span style="color:#f92672">=</span> <span style="color:#ae81ff">31</span>, highest_degree_base <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, hash <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> len; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>        highest_degree_base <span style="color:#f92672">*=</span> base;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>        hash <span style="color:#f92672">*=</span> base;
+</span></span><span style="display:flex;"><span>        hash <span style="color:#f92672">+=</span> s[i]<span style="color:#f92672">-</span><span style="color:#e6db74">&#39;a&#39;</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span>(i <span style="color:#f92672">&gt;=</span> len)
+</span></span><span style="display:flex;"><span>            hash <span style="color:#f92672">-=</span> highest_degree_base <span style="color:#f92672">*</span> (s[i<span style="color:#f92672">-</span>len]<span style="color:#f92672">-</span><span style="color:#e6db74">&#39;a&#39;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span>(i <span style="color:#f92672">&gt;=</span> len<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span>(seen.count(hash))
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> s.substr(i<span style="color:#f92672">-</span>len<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>, len);
+</span></span><span style="display:flex;"><span>            seen.insert(hash);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;&#34;</span>;
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div></div></div>
+
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
