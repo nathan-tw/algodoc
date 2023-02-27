@@ -34,6 +34,10 @@ Notes for my software topics.
 ## Todo List
 {{< details "TODO" open >}}
 
+
+### DevOps
+
+* TOO MANY TOPICS
 ### Operating System
 * CPU Schedule
 
@@ -41,7 +45,6 @@ Notes for my software topics.
 * Graph
 * String
     * Trie
-    * Rolling Hash
 
 ### System Design
 * MapReduce

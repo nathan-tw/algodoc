@@ -1,6 +1,5 @@
 ---
 title: Kadane's Algorithm
-weight: 2
 bookToc: false
 ---
 

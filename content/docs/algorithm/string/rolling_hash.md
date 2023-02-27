@@ -1,6 +1,5 @@
 ---
 title: Rolling Hash
-weight: 2
 bookToc: false
 ---
 
@@ -28,27 +27,32 @@ H(x) = x^2+19x+1
     2. 加上 `'a'-'a'+1`，得到61133。
     3. 將 `x^3`(59582) 減去，得到1551。
     
+另外 hash 很容易因為過大而溢位，實作上通常會對一個夠大的質數取餘，例如我常用的 `1e9+7`，以下程式碼為了方便說明就沒有取餘數。
+
 {{< tabs "uniqueid" >}}
 {{< tab "c++" >}}
 ```c++
 using LL = long long;
-string findSubstring(int len) {
-    unordered_set<LL> seen;
-    LL base = 31, highest_degree_base = 1, hash = 0;
-    for(int i = 0; i < len; i++)
+string findSubstring(string str, string substr) {
+    int n = str.length(), m = substr.length();
+    LL base = 31, highest_degree_base = 1, currHash = 0, h = 0;
+    
+    for(int i = m-1; i >=0; i--) {
+        currHash += highest_degree_base * (substr[i]-'a'+1);
         highest_degree_base *= base;
+    }
+        
     for(int i = 0; i < n; i++) {
-        hash *= base;
-        hash += s[i]-'a';
-        if(i >= len)
-            hash -= highest_degree_base * (s[i-len]-'a');
+        currHash *= base;
+        currHash += s[i]-'a'+1;
+        if(i >= m)
+            currHash -= highest_degree_base * (s[i-len]-'a'+1);
         if(i >= len-1) {
-            if(seen.count(hash))
-                return s.substr(i-len+1, len);
-            seen.insert(hash);
+            if(currHash == h)
+                return s.substr(i-m+1, len);
         }
     }
-    return "";
+    return ""; // not found
 };
 ```
 {{< /tab >}}

@@ -1,6 +1,5 @@
 ---
 title: Binary Index Tree
-weight: 2
 bookToc: false
 ---
 
