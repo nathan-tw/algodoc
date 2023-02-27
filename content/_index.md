@@ -19,7 +19,7 @@ Notes for my software topics.
 ## System Design
 
 * Rate Limit
-
+* API Gateway
 
 <--->
 
@@ -36,6 +36,7 @@ Notes for my software topics.
 
 ### Operating System
 * CPU Schedule
+
 ### Algorithm
 * Graph
 * String
