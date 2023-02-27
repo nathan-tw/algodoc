@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>algodoc</title>
+    <link>https://algodoc.star-67.com/docs/algorithm/graph/</link>
+    <description>Recent content on algodoc</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="https://algodoc.star-67.com/docs/algorithm/graph/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>UnionFind</title>
+      <link>https://algodoc.star-67.com/docs/algorithm/graph/union_find/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://algodoc.star-67.com/docs/algorithm/graph/union_find/</guid>
+      <description>UnionFind (Disjoint Set) # Set 在資訊科學中用以代表一個群體，Disjoint Set 也就是互相沒有交集的群體，做法是將群體中的一個元素作為代表，可以透過查找群體中其他成員取得這個元素，通常用來找出圖中的 connected component，也因為有兩個操作分別是 Union, Find 所以稱為 UnionFind。
+Union: 將兩個群體合在一起，很直觀的將 b 原本群體的代表替換成 a 的群體。
+void merge(int a, int b) { uf[find(b)] = find(a); } Find: 如果 a 找不到，代表不屬於任何一個群體，需要新建立一個。如果 a 不是群體代表，則需要向源頭尋找，並且同時做調整。
+int find(int a) { if(!uf.count(a)) uf[a] = a; if(uf[a] != a) uf[a] = find(uf[a]); return uf[a]; } 將代碼整合後如下：
+c&amp;#43;&amp;#43; class UnionFind { public: unordered_map&amp;lt;int, int&amp;gt; uf; int find(int a) { if(!uf.count(a)) uf[a] = a; if(uf[a] !</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -15,7 +15,7 @@
       <description>Rolling Hash # Rolling Hash 是一個字段比對方式，利用移動視窗計算視窗內的 hash 值，將推移視窗的複雜度從 O(n) 降到 O(1)。 做法是將字母視作一個多項式的係數，例如 a~z 對應 1~26，而這個多項式就是 hash function，以 banana 這個字串來說，要找到 ana 這個子字串該怎麼做？
 計算 ana 的 hash 值 h，此時我們需要假設一個質數 x，這裡假設 x=31 ， 計算出 ana 的 h 為1551。 \[H(x) = x^2&amp;#43;19x&amp;#43;1\] 移動長度3的視窗，並同時確認 hash 值是否與 h 相同。每次移動視窗需要執行三個步驟：
 將多項式同乘 base。 將多項式最後一項 (a0) 加上去。 將最高次剪去。 根據上述步驟，從 ban 轉移到 ana 的過程是：
-ban 的 hash值為1972，將多項式乘以 x 得到 61132。 加上 &#39;a&#39;-&#39;a&#39;+1，得到61133。 將 x^3(59582) 減去，得到1551。 c&amp;#43;&amp;#43; using LL = long long; string findSubstring(int len) { unordered_set&amp;lt;LL&amp;gt; seen; LL base = 31, highest_degree_base = 1, hash = 0; for(int i = 0; i &amp;lt; len; i++) highest_degree_base *= base; for(int i = 0; i &amp;lt; n; i++) { hash *= base; hash += s[i]-&amp;#39;a&amp;#39;; if(i &amp;gt;= len) hash -= highest_degree_base * (s[i-len]-&amp;#39;a&amp;#39;); if(i &amp;gt;= len-1) { if(seen.</description>
+ban 的 hash值為1972，將多項式乘以 x 得到 61132。 加上 &#39;a&#39;-&#39;a&#39;+1，得到61133。 將 x^3(59582) 減去，得到1551。 另外 hash 很容易因為過大而溢位，實作上通常會對一個夠大的質數取餘，例如我常用的 1e9+7，以下程式碼為了方便說明就沒有取餘數。</description>
     </item>
     
   </channel>

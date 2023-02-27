@@ -6,13 +6,13 @@
 <meta name="description" content="Rolling Hash # Rolling Hash 是一個字段比對方式，利用移動視窗計算視窗內的 hash 值，將推移視窗的複雜度從 O(n) 降到 O(1)。 做法是將字母視作一個多項式的係數，例如 a~z 對應 1~26，而這個多項式就是 hash function，以 banana 這個字串來說，要找到 ana 這個子字串該怎麼做？
 計算 ana 的 hash 值 h，此時我們需要假設一個質數 x，這裡假設 x=31 ， 計算出 ana 的 h 為1551。 \[H(x) = x^2&#43;19x&#43;1\] 移動長度3的視窗，並同時確認 hash 值是否與 h 相同。每次移動視窗需要執行三個步驟：
 將多項式同乘 base。 將多項式最後一項 (a0) 加上去。 將最高次剪去。 根據上述步驟，從 ban 轉移到 ana 的過程是：
-ban 的 hash值為1972，將多項式乘以 x 得到 61132。 加上 &#39;a&#39;-&#39;a&#39;&#43;1，得到61133。 將 x^3(59582) 減去，得到1551。 c&#43;&#43; using LL = long long; string findSubstring(int len) { unordered_set&lt;LL&gt; seen; LL base = 31, highest_degree_base = 1, hash = 0; for(int i = 0; i &lt; len; i&#43;&#43;) highest_degree_base *= base; for(int i = 0; i &lt; n; i&#43;&#43;) { hash *= base; hash &#43;= s[i]-&#39;a&#39;; if(i &gt;= len) hash -= highest_degree_base * (s[i-len]-&#39;a&#39;); if(i &gt;= len-1) { if(seen.">
+ban 的 hash值為1972，將多項式乘以 x 得到 61132。 加上 &#39;a&#39;-&#39;a&#39;&#43;1，得到61133。 將 x^3(59582) 減去，得到1551。 另外 hash 很容易因為過大而溢位，實作上通常會對一個夠大的質數取餘，例如我常用的 1e9&#43;7，以下程式碼為了方便說明就沒有取餘數。">
 <meta name="theme-color" content="#FFFFFF">
 <meta name="color-scheme" content="light dark"><meta property="og:title" content="Rolling Hash" />
 <meta property="og:description" content="Rolling Hash # Rolling Hash 是一個字段比對方式，利用移動視窗計算視窗內的 hash 值，將推移視窗的複雜度從 O(n) 降到 O(1)。 做法是將字母視作一個多項式的係數，例如 a~z 對應 1~26，而這個多項式就是 hash function，以 banana 這個字串來說，要找到 ana 這個子字串該怎麼做？
 計算 ana 的 hash 值 h，此時我們需要假設一個質數 x，這裡假設 x=31 ， 計算出 ana 的 h 為1551。 \[H(x) = x^2&#43;19x&#43;1\] 移動長度3的視窗，並同時確認 hash 值是否與 h 相同。每次移動視窗需要執行三個步驟：
 將多項式同乘 base。 將多項式最後一項 (a0) 加上去。 將最高次剪去。 根據上述步驟，從 ban 轉移到 ana 的過程是：
-ban 的 hash值為1972，將多項式乘以 x 得到 61132。 加上 &#39;a&#39;-&#39;a&#39;&#43;1，得到61133。 將 x^3(59582) 減去，得到1551。 c&#43;&#43; using LL = long long; string findSubstring(int len) { unordered_set&lt;LL&gt; seen; LL base = 31, highest_degree_base = 1, hash = 0; for(int i = 0; i &lt; len; i&#43;&#43;) highest_degree_base *= base; for(int i = 0; i &lt; n; i&#43;&#43;) { hash *= base; hash &#43;= s[i]-&#39;a&#39;; if(i &gt;= len) hash -= highest_degree_base * (s[i-len]-&#39;a&#39;); if(i &gt;= len-1) { if(seen." />
+ban 的 hash值為1972，將多項式乘以 x 得到 61132。 加上 &#39;a&#39;-&#39;a&#39;&#43;1，得到61133。 將 x^3(59582) 減去，得到1551。 另外 hash 很容易因為過大而溢位，實作上通常會對一個夠大的質數取餘，例如我常用的 1e9&#43;7，以下程式碼為了方便說明就沒有取餘數。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://algodoc.star-67.com/docs/algorithm/string/rolling_hash/" /><meta property="article:section" content="docs" />
 
@@ -22,7 +22,7 @@ ban 的 hash值為1972，將多項式乘以 x 得到 61132。 加上 &#39;a&#39;
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css" integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.3b78f679dfd0d016e2fb68903ea2f0965499dec6a0cc2b975e87c014b6171c8a.js" integrity="sha256-O3j2ed/Q0Bbi&#43;2iQPqLwllSZ3sagzCuXXofAFLYXHIo=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.eaf36a7de902c1949bf717289330ab5488a91b7e8fa8e52b83c31aaa55d0e2be.js" integrity="sha256-6vNqfekCwZSb9xcokzCrVIipG36PqOUrg8MaqlXQ4r4=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -121,6 +121,40 @@ https://github.com/alex-shpak/hugo-book
   
 
   
+    <input type="checkbox" id="section-82c7134a5775f01220940c7bc5c3ced8" class="toggle"  />
+    <label for="section-82c7134a5775f01220940c7bc5c3ced8" class="flex justify-between">
+      <a role="button" class="">Graph</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/algorithm/graph/union_find/" class="">UnionFind</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
     <input type="checkbox" id="section-ad90ab22a83804186eee37886e7f2d07" class="toggle"  />
     <label for="section-ad90ab22a83804186eee37886e7f2d07" class="flex justify-between">
       <a role="button" class="">Range</a>
@@ -174,40 +208,6 @@ https://github.com/alex-shpak/hugo-book
 
   
     <a href="/docs/algorithm/string/rolling_hash/" class="active">Rolling Hash</a>
-  
-
-        </li>
-      
-    
-  </ul>
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <input type="checkbox" id="section-73294e4445b3669a47dedbccf2c73bc4" class="toggle"  />
-    <label for="section-73294e4445b3669a47dedbccf2c73bc4" class="flex justify-between">
-      <a role="button" class="">Tree</a>
-    </label>
-  
-
-          
-  <ul>
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/algorithm/tree/union_find/" class="">UnionFind</a>
   
 
         </li>
@@ -396,6 +396,7 @@ https://github.com/alex-shpak/hugo-book
 </ol>
 </li>
 </ol>
+<p>另外 hash 很容易因為過大而溢位，實作上通常會對一個夠大的質數取餘，例如我常用的 <code>1e9+7</code>，以下程式碼為了方便說明就沒有取餘數。</p>
 
 
 
@@ -403,24 +404,27 @@ https://github.com/alex-shpak/hugo-book
 <div class="book-tabs"><input type="radio" class="toggle" name="tabs-uniqueid" id="tabs-uniqueid-0" checked="checked" />
   <label for="tabs-uniqueid-0">c&#43;&#43;</label>
   <div class="book-tabs-content markdown-inner"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#66d9ef">using</span> LL <span style="color:#f92672">=</span> <span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span>;
-</span></span><span style="display:flex;"><span>string <span style="color:#a6e22e">findSubstring</span>(<span style="color:#66d9ef">int</span> len) {
-</span></span><span style="display:flex;"><span>    unordered_set<span style="color:#f92672">&lt;</span>LL<span style="color:#f92672">&gt;</span> seen;
-</span></span><span style="display:flex;"><span>    LL base <span style="color:#f92672">=</span> <span style="color:#ae81ff">31</span>, highest_degree_base <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, hash <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> len; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>string <span style="color:#a6e22e">findSubstring</span>(string str, string substr) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> n <span style="color:#f92672">=</span> str.length(), m <span style="color:#f92672">=</span> substr.length();
+</span></span><span style="display:flex;"><span>    LL base <span style="color:#f92672">=</span> <span style="color:#ae81ff">31</span>, highest_degree_base <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, currHash <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, h <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> m<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">0</span>; i<span style="color:#f92672">--</span>) {
+</span></span><span style="display:flex;"><span>        currHash <span style="color:#f92672">+=</span> highest_degree_base <span style="color:#f92672">*</span> (substr[i]<span style="color:#f92672">-</span><span style="color:#e6db74">&#39;a&#39;</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>);
 </span></span><span style="display:flex;"><span>        highest_degree_base <span style="color:#f92672">*=</span> base;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>        
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">++</span>) {
-</span></span><span style="display:flex;"><span>        hash <span style="color:#f92672">*=</span> base;
-</span></span><span style="display:flex;"><span>        hash <span style="color:#f92672">+=</span> s[i]<span style="color:#f92672">-</span><span style="color:#e6db74">&#39;a&#39;</span>;
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span>(i <span style="color:#f92672">&gt;=</span> len)
-</span></span><span style="display:flex;"><span>            hash <span style="color:#f92672">-=</span> highest_degree_base <span style="color:#f92672">*</span> (s[i<span style="color:#f92672">-</span>len]<span style="color:#f92672">-</span><span style="color:#e6db74">&#39;a&#39;</span>);
+</span></span><span style="display:flex;"><span>        currHash <span style="color:#f92672">*=</span> base;
+</span></span><span style="display:flex;"><span>        currHash <span style="color:#f92672">+=</span> s[i]<span style="color:#f92672">-</span><span style="color:#e6db74">&#39;a&#39;</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span>(i <span style="color:#f92672">&gt;=</span> m)
+</span></span><span style="display:flex;"><span>            currHash <span style="color:#f92672">-=</span> highest_degree_base <span style="color:#f92672">*</span> (s[i<span style="color:#f92672">-</span>len]<span style="color:#f92672">-</span><span style="color:#e6db74">&#39;a&#39;</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>);
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span>(i <span style="color:#f92672">&gt;=</span> len<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span>(seen.count(hash))
-</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> s.substr(i<span style="color:#f92672">-</span>len<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>, len);
-</span></span><span style="display:flex;"><span>            seen.insert(hash);
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span>(currHash <span style="color:#f92672">==</span> h)
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> s.substr(i<span style="color:#f92672">-</span>m<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>, len);
 </span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;&#34;</span>;
-</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;&#34;</span>; <span style="color:#75715e">// not found
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>};
 </span></span></code></pre></div></div></div>
 
 </article>
