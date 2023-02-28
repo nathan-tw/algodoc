@@ -2,22 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://algodoc.star-67.com/docs/leetcode/hard/1235/</loc>
-  </url><url>
-    <loc>https://algodoc.star-67.com/docs/leetcode/hard/2407/</loc>
-  </url><url>
-    <loc>https://algodoc.star-67.com/docs/leetcode/hard/2493/</loc>
-  </url><url>
-    <loc>https://algodoc.star-67.com/docs/leetcode/hard/446/</loc>
-  </url><url>
-    <loc>https://algodoc.star-67.com/docs/algorithm/range/bit/</loc>
-  </url><url>
-    <loc>https://algodoc.star-67.com/docs/algorithm/dp/kadane/</loc>
-  </url><url>
-    <loc>https://algodoc.star-67.com/docs/algorithm/string/rolling_hash/</loc>
-  </url><url>
-    <loc>https://algodoc.star-67.com/docs/algorithm/graph/union_find/</loc>
-  </url><url>
     <loc>https://algodoc.star-67.com/docs/algorithm/dp/</loc>
   </url><url>
     <loc>https://algodoc.star-67.com/docs/algorithm/graph/</loc>
@@ -28,18 +12,42 @@
   </url><url>
     <loc>https://algodoc.star-67.com/docs/leetcode/hard/</loc>
   </url><url>
+    <loc>https://algodoc.star-67.com/docs/os/</loc>
+  </url><url>
     <loc>https://algodoc.star-67.com/docs/algorithm/</loc>
   </url><url>
     <loc>https://algodoc.star-67.com/docs/algorithm/range/segtree/</loc>
   </url><url>
     <loc>https://algodoc.star-67.com/docs/leetcode/</loc>
   </url><url>
+    <loc>https://algodoc.star-67.com/docs/leetcode/hard/1235/</loc>
+  </url><url>
+    <loc>https://algodoc.star-67.com/docs/leetcode/hard/2407/</loc>
+  </url><url>
+    <loc>https://algodoc.star-67.com/docs/leetcode/hard/2493/</loc>
+  </url><url>
+    <loc>https://algodoc.star-67.com/docs/leetcode/hard/446/</loc>
+  </url><url>
+    <loc>https://algodoc.star-67.com/docs/algorithm/graph/bfs/</loc>
+  </url><url>
+    <loc>https://algodoc.star-67.com/docs/algorithm/range/bit/</loc>
+  </url><url>
     <loc>https://algodoc.star-67.com/categories/</loc>
+  </url><url>
+    <loc>https://algodoc.star-67.com/docs/algorithm/graph/dfs/</loc>
   </url><url>
     <loc>https://algodoc.star-67.com/docs/</loc>
   </url><url>
+    <loc>https://algodoc.star-67.com/docs/algorithm/dp/kadane/</loc>
+  </url><url>
     <loc>https://algodoc.star-67.com/</loc>
   </url><url>
+    <loc>https://algodoc.star-67.com/docs/os/pgtbl/</loc>
+  </url><url>
+    <loc>https://algodoc.star-67.com/docs/algorithm/string/rolling_hash/</loc>
+  </url><url>
     <loc>https://algodoc.star-67.com/tags/</loc>
+  </url><url>
+    <loc>https://algodoc.star-67.com/docs/algorithm/graph/union_find/</loc>
   </url>
 </urlset>

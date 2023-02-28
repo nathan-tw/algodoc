@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>algodoc</title>
+    <link>https://algodoc.star-67.com/docs/os/</link>
+    <description>Recent content on algodoc</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="https://algodoc.star-67.com/docs/os/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Page Table</title>
+      <link>https://algodoc.star-67.com/docs/os/pgtbl/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://algodoc.star-67.com/docs/os/pgtbl/</guid>
+      <description>Page Table # Paging Hardware # 通常 ISA 操作的是虛擬記憶體，無論是 kernel space 或 user space，因此我們需要一個硬體對應實體記憶體，現代的內存管理單元 (Memory Mangement Unit aka. MMU) 多存在處理器中，
+flowchart LR CPU --&#34;發出 VA (Virtual Address) &#34;--&gt; 硬體轉換電路 --&#34;發出 MVA (Modified Virtual Address)&#34; --&gt; MMU--&#34;發出 PA (Physical Address)&#34;--&gt;物理內存 Kernel address space # 圖的左邊是 xv6 的內核虛擬記憶體分佈，RWX 分別對應著 PTE (page table entry) 的讀、寫和執行標誌。可以看到 kernel 在實體與虛擬記憶體中同時座落在 KERNBASE=0x80000000 ，會有這樣直接映射的設計是因為 kernel 中許多位置會頻繁被調用，直接映射可以減少轉換的成本。 Physical memory allocation # 在執行 runtime 時，實體記憶體需要分配給 page table, user memory, kernel stacks, pipe buffers 空間，例如我們寫 c 語言時常會用到的 malloc，實際上會先返回虛擬記憶體給使用者，等到需要用到時才查詢分頁表為空，透過引發 page fault 在缺頁異常中處理實體記憶體分配空間。xv6 的分配空間位於 PHYSTOP=0x86400000 至 kernel 之間，每次空間分配與釋放都是以 page 為單位 (PGSIZE=4096 bytes)，xv6 透過維護一個 linked list 來確認 page 是否可用。</description>
+    </item>
+    
+  </channel>
+</rss>

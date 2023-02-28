@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Page Table # Paging Hardware # 通常 ISA 操作的是虛擬記憶體，無論是 kernel space 或 user space，因此我們需要一個硬體對應實體記憶體，現代的內存管理單元 (Memory Mangement Unit aka. MMU) 多存在處理器中，
+flowchart LR CPU --&#34;發出 VA (Virtual Address) &#34;--&gt; 硬體轉換電路 --&#34;發出 MVA (Modified Virtual Address)&#34; --&gt; MMU--&#34;發出 PA (Physical Address)&#34;--&gt;物理內存 Kernel address space # 圖的左邊是 xv6 的內核虛擬記憶體分佈，RWX 分別對應著 PTE (page table entry) 的讀、寫和執行標誌。可以看到 kernel 在實體與虛擬記憶體中同時座落在 KERNBASE=0x80000000 ，會有這樣直接映射的設計是因為 kernel 中許多位置會頻繁被調用，直接映射可以減少轉換的成本。 Physical memory allocation # 在執行 runtime 時，實體記憶體需要分配給 page table, user memory, kernel stacks, pipe buffers 空間，例如我們寫 c 語言時常會用到的 malloc，實際上會先返回虛擬記憶體給使用者，等到需要用到時才查詢分頁表為空，透過引發 page fault 在缺頁異常中處理實體記憶體分配空間。xv6 的分配空間位於 PHYSTOP=0x86400000 至 kernel 之間，每次空間分配與釋放都是以 page 為單位 (PGSIZE=4096 bytes)，xv6 透過維護一個 linked list 來確認 page 是否可用。">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="Page Table" />
+<meta property="og:description" content="Page Table # Paging Hardware # 通常 ISA 操作的是虛擬記憶體，無論是 kernel space 或 user space，因此我們需要一個硬體對應實體記憶體，現代的內存管理單元 (Memory Mangement Unit aka. MMU) 多存在處理器中，
+flowchart LR CPU --&#34;發出 VA (Virtual Address) &#34;--&gt; 硬體轉換電路 --&#34;發出 MVA (Modified Virtual Address)&#34; --&gt; MMU--&#34;發出 PA (Physical Address)&#34;--&gt;物理內存 Kernel address space # 圖的左邊是 xv6 的內核虛擬記憶體分佈，RWX 分別對應著 PTE (page table entry) 的讀、寫和執行標誌。可以看到 kernel 在實體與虛擬記憶體中同時座落在 KERNBASE=0x80000000 ，會有這樣直接映射的設計是因為 kernel 中許多位置會頻繁被調用，直接映射可以減少轉換的成本。 Physical memory allocation # 在執行 runtime 時，實體記憶體需要分配給 page table, user memory, kernel stacks, pipe buffers 空間，例如我們寫 c 語言時常會用到的 malloc，實際上會先返回虛擬記憶體給使用者，等到需要用到時才查詢分頁表為空，透過引發 page fault 在缺頁異常中處理實體記憶體分配空間。xv6 的分配空間位於 PHYSTOP=0x86400000 至 kernel 之間，每次空間分配與釋放都是以 page 為單位 (PGSIZE=4096 bytes)，xv6 透過維護一個 linked list 來確認 page 是否可用。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://algodoc.star-67.com/docs/os/pgtbl/" /><meta property="article:section" content="docs" />
+
+
+<title>Page Table | algodoc</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css" integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/en.search.min.7f96ddcfb619468a307fce6b3b605b4236e556da9f3b67f94a28f24e3f0d0c1c.js" integrity="sha256-f5bdz7YZRoowf85rO2BbQjblVtqfO2f5SijyTj8NDBw=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>algodoc</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <a href="/docs/os/" class="">Os</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/os/pgtbl/" class="active">Page Table</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <a href="/docs/algorithm/" class="">Algorithm</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-fec7bfa09795e0c687542593a3f7424b" class="toggle"  />
+    <label for="section-fec7bfa09795e0c687542593a3f7424b" class="flex justify-between">
+      <a role="button" class="">Dp</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/algorithm/dp/kadane/" class="">Kadane&#39;s Algorithm</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-82c7134a5775f01220940c7bc5c3ced8" class="toggle"  />
+    <label for="section-82c7134a5775f01220940c7bc5c3ced8" class="flex justify-between">
+      <a role="button" class="">Graph</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/algorithm/graph/bfs/" class="">BFS</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/algorithm/graph/dfs/" class="">DFS</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/algorithm/graph/union_find/" class="">UnionFind</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-ad90ab22a83804186eee37886e7f2d07" class="toggle"  />
+    <label for="section-ad90ab22a83804186eee37886e7f2d07" class="flex justify-between">
+      <a role="button" class="">Range</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/algorithm/range/bit/" class="">Binary Index Tree</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-d4f5454e2615a8366aa48d211712ff7c" class="toggle"  />
+    <label for="section-d4f5454e2615a8366aa48d211712ff7c" class="flex justify-between">
+      <a role="button" class="">String</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/algorithm/string/rolling_hash/" class="">Rolling Hash</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <a href="/docs/leetcode/" class="">Leetcode</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-42eecace07f2c55adbf8c2fda3b6b016" class="toggle"  />
+    <label for="section-42eecace07f2c55adbf8c2fda3b6b016" class="flex justify-between">
+      <a role="button" class="">Hard</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/leetcode/hard/1235/" class="">1235. Maximum Profit in Job Scheduling</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/leetcode/hard/2407/" class="">2407. Longest Increasing Subsequence II</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/leetcode/hard/2493/" class="">2493. Divide Nodes Into the Maximum Number of Groups</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/leetcode/hard/446/" class="">466. Arithmetic Slices II - Subsequence</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Page Table</strong>
+
+  <label for="toc-control">
+    
+  </label>
+</div>
+
+
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="page-table">
+  Page Table
+  <a class="anchor" href="#page-table">#</a>
+</h1>
+<h2 id="paging-hardware">
+  Paging Hardware
+  <a class="anchor" href="#paging-hardware">#</a>
+</h2>
+<p>通常 ISA 操作的是虛擬記憶體，無論是 kernel space 或 user space，因此我們需要一個硬體對應實體記憶體，現代的內存管理單元 (Memory Mangement Unit aka. MMU) 多存在處理器中，</p>
+
+
+<script src="/mermaid.min.js"></script>
+
+  <script>mermaid.initialize({
+  "flowchart": {
+    "useMaxWidth":true
+  },
+  "theme": "default"
+}
+)</script>
+
+
+
+
+<p class="mermaid text-center">
+flowchart LR
+CPU --"發出 VA (Virtual Address) "--> 硬體轉換電路 --"發出 MVA (Modified Virtual Address)" --> MMU--"發出 PA (Physical Address)"-->物理內存
+</p>
+
+<h2 id="kernel-address-space">
+  Kernel address space
+  <a class="anchor" href="#kernel-address-space">#</a>
+</h2>
+<p>圖的左邊是 xv6 的內核虛擬記憶體分佈，RWX 分別對應著 PTE (page table entry) 的讀、寫和執行標誌。可以看到 kernel 在實體與虛擬記憶體中同時座落在 <code>KERNBASE=0x80000000</code> ，會有這樣直接映射的設計是因為 kernel 中許多位置會頻繁被調用，直接映射可以減少轉換的成本。
+<figure class="text-center"><img src="/os/pgtbl/paging.png" width="500"/>
+</figure>
+</p>
+<h2 id="physical-memory-allocation">
+  Physical memory allocation
+  <a class="anchor" href="#physical-memory-allocation">#</a>
+</h2>
+<p>在執行 runtime 時，實體記憶體需要分配給 page table, user memory, kernel stacks, pipe buffers 空間，例如我們寫 c 語言時常會用到的 <code>malloc</code>，實際上會先返回虛擬記憶體給使用者，等到需要用到時才查詢分頁表為空，透過引發 page fault 在缺頁異常中處理實體記憶體分配空間。xv6 的分配空間位於 <code>PHYSTOP=0x86400000</code> 至 kernel 之間，每次空間分配與釋放都是以 page 為單位 (<code>PGSIZE=4096 bytes</code>)，xv6 透過維護一個 linked list 來確認 page 是否可用。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> run {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">struct</span> run <span style="color:#f92672">*</span>next;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">struct</span> spinlock lock;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">struct</span> run <span style="color:#f92672">*</span>freelist;
+</span></span><span style="display:flex;"><span>} kmem;
+</span></span></code></pre></div><p>為了維護一個 <code>freelist</code>，kernel 有兩個方法對應到配置與釋放空間：</p>
+<ul>
+<li><code>kalloc</code>：將 page 移除 linked list</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">kalloc</span>(<span style="color:#66d9ef">void</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">struct</span> run <span style="color:#f92672">*</span>r;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">acquire</span>(<span style="color:#f92672">&amp;</span>kmem.lock);
+</span></span><span style="display:flex;"><span>  r <span style="color:#f92672">=</span> kmem.freelist;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span>(r)
+</span></span><span style="display:flex;"><span>    kmem.freelist <span style="color:#f92672">=</span> r<span style="color:#f92672">-&gt;</span>next;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">release</span>(<span style="color:#f92672">&amp;</span>kmem.lock);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span>(r)
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">memset</span>((<span style="color:#66d9ef">char</span><span style="color:#f92672">*</span>)r, <span style="color:#ae81ff">5</span>, PGSIZE); <span style="color:#75715e">// fill with junk
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">return</span> (<span style="color:#66d9ef">void</span><span style="color:#f92672">*</span>)r;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
+<li><code>kfree</code>：將 page 加入 linked list</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">void</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">kfree</span>(<span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>pa)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">struct</span> run <span style="color:#f92672">*</span>r;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span>(((uint64)pa <span style="color:#f92672">%</span> PGSIZE) <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> (<span style="color:#66d9ef">char</span><span style="color:#f92672">*</span>)pa <span style="color:#f92672">&lt;</span> end <span style="color:#f92672">||</span> (uint64)pa <span style="color:#f92672">&gt;=</span> PHYSTOP)
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">panic</span>(<span style="color:#e6db74">&#34;kfree&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Fill with junk to catch dangling refs.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">memset</span>(pa, <span style="color:#ae81ff">1</span>, PGSIZE);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  r <span style="color:#f92672">=</span> (<span style="color:#66d9ef">struct</span> run<span style="color:#f92672">*</span>)pa;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">acquire</span>(<span style="color:#f92672">&amp;</span>kmem.lock);
+</span></span><span style="display:flex;"><span>  r<span style="color:#f92672">-&gt;</span>next <span style="color:#f92672">=</span> kmem.freelist;
+</span></span><span style="display:flex;"><span>  kmem.freelist <span style="color:#f92672">=</span> r;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">release</span>(<span style="color:#f92672">&amp;</span>kmem.lock);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="reference">
+  Reference
+  <a class="anchor" href="#reference">#</a>
+</h2>
+<ul>
+<li><a href="https://www.sifive.com/blog/all-aboard-part-9-paging-and-mmu-in-risc-v-linux-kernel">https://www.sifive.com/blog/all-aboard-part-9-paging-and-mmu-in-risc-v-linux-kernel</a></li>
+<li><a href="https://ithelp.ithome.com.tw/articles/10267494">https://ithelp.ithome.com.tw/articles/10267494</a></li>
+<li><a href="https://man7.org/linux/man-pages/man2/mlock.2.html">https://man7.org/linux/man-pages/man2/mlock.2.html</a></li>
+<li><a href="https://ithelp.ithome.com.tw/articles/10299498">https://ithelp.ithome.com.tw/articles/10299498</a></li>
+</ul>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

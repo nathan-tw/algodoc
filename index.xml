@@ -7,6 +7,15 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language><atom:link href="https://algodoc.star-67.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title></title>
+      <link>https://algodoc.star-67.com/docs/algorithm/range/segtree/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://algodoc.star-67.com/docs/algorithm/range/segtree/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>1235. Maximum Profit in Job Scheduling</title>
       <link>https://algodoc.star-67.com/docs/leetcode/hard/1235/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -52,6 +61,15 @@ For example, [1, 3, 5, 7, 9], [7, 7, 7, 7], and [3, -1, -5, -9] are arithmetic s
     </item>
     
     <item>
+      <title>BFS</title>
+      <link>https://algodoc.star-67.com/docs/algorithm/graph/bfs/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://algodoc.star-67.com/docs/algorithm/graph/bfs/</guid>
+      <description> BFS # c&amp;#43;&amp;#43; // TODO </description>
+    </item>
+    
+    <item>
       <title>Binary Index Tree</title>
       <link>https://algodoc.star-67.com/docs/algorithm/range/bit/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -61,12 +79,31 @@ For example, [1, 3, 5, 7, 9], [7, 7, 7, 7], and [3, -1, -5, -9] are arithmetic s
     </item>
     
     <item>
+      <title>DFS</title>
+      <link>https://algodoc.star-67.com/docs/algorithm/graph/dfs/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://algodoc.star-67.com/docs/algorithm/graph/dfs/</guid>
+      <description> DFS # c&amp;#43;&amp;#43; // TODO </description>
+    </item>
+    
+    <item>
       <title>Kadane&#39;s Algorithm</title>
       <link>https://algodoc.star-67.com/docs/algorithm/dp/kadane/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://algodoc.star-67.com/docs/algorithm/dp/kadane/</guid>
       <description> Kadane&amp;rsquo;s Algorithm # c&amp;#43;&amp;#43; int maxSubArraySum(int a[], int size) { int max_so_far = INT_MIN, max_ending_here = 0; for (int i = 0; i &amp;lt; size; i++) { max_ending_here = max_ending_here + a[i]; if (max_so_far &amp;lt; max_ending_here) max_so_far = max_ending_here; if (max_ending_here &amp;lt; 0) max_ending_here = 0; } return max_so_far; } </description>
+    </item>
+    
+    <item>
+      <title>Page Table</title>
+      <link>https://algodoc.star-67.com/docs/os/pgtbl/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://algodoc.star-67.com/docs/os/pgtbl/</guid>
+      <description>Page Table # Paging Hardware # 通常 ISA 操作的是虛擬記憶體，無論是 kernel space 或 user space，因此我們需要一個硬體對應實體記憶體，現代的內存管理單元 (Memory Mangement Unit aka. MMU) 多存在處理器中，
+flowchart LR CPU --&#34;發出 VA (Virtual Address) &#34;--&gt; 硬體轉換電路 --&#34;發出 MVA (Modified Virtual Address)&#34; --&gt; MMU--&#34;發出 PA (Physical Address)&#34;--&gt;物理內存 Kernel address space # 圖的左邊是 xv6 的內核虛擬記憶體分佈，RWX 分別對應著 PTE (page table entry) 的讀、寫和執行標誌。可以看到 kernel 在實體與虛擬記憶體中同時座落在 KERNBASE=0x80000000 ，會有這樣直接映射的設計是因為 kernel 中許多位置會頻繁被調用，直接映射可以減少轉換的成本。 Physical memory allocation # 在執行 runtime 時，實體記憶體需要分配給 page table, user memory, kernel stacks, pipe buffers 空間，例如我們寫 c 語言時常會用到的 malloc，實際上會先返回虛擬記憶體給使用者，等到需要用到時才查詢分頁表為空，透過引發 page fault 在缺頁異常中處理實體記憶體分配空間。xv6 的分配空間位於 PHYSTOP=0x86400000 至 kernel 之間，每次空間分配與釋放都是以 page 為單位 (PGSIZE=4096 bytes)，xv6 透過維護一個 linked list 來確認 page 是否可用。</description>
     </item>
     
     <item>
@@ -92,15 +129,6 @@ Union: 將兩個群體合在一起，很直觀的將 b 原本群體的代表替�
 void merge(int a, int b) { uf[find(b)] = find(a); } Find: 如果 a 找不到，代表不屬於任何一個群體，需要新建立一個。如果 a 不是群體代表，則需要向源頭尋找，並且同時做調整。
 int find(int a) { if(!uf.count(a)) uf[a] = a; if(uf[a] != a) uf[a] = find(uf[a]); return uf[a]; } 將代碼整合後如下：
 c&amp;#43;&amp;#43; class UnionFind { public: unordered_map&amp;lt;int, int&amp;gt; uf; int find(int a) { if(!uf.count(a)) uf[a] = a; if(uf[a] !</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://algodoc.star-67.com/docs/algorithm/range/segtree/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://algodoc.star-67.com/docs/algorithm/range/segtree/</guid>
-      <description></description>
     </item>
     
   </channel>
