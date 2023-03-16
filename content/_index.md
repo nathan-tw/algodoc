@@ -1,5 +1,5 @@
 ---
-title: Nathan's Algodoc
+title: Star67
 type: docs
 ---
 
