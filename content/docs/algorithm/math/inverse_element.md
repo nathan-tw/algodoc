@@ -31,9 +31,20 @@ a^{{-1}}\equiv b{\pmod  {n}}
 
 對此可以乘以分母的模反元素達到一樣的效果，找反元素的方法有三種：
 
-### 擴展歐幾里德法
 
-前提： `gcd(a, b) == 1`
+### **擴展歐幾里德法**
+
+{{< katex display>}}
+ax+ny=1
+{{< /katex >}}
+
+原理和求線性方程一樣，在模 n 下
+
+{{< katex display>}}
+ax+ny \equiv ax \equiv 1
+{{< /katex >}}
+
+因此求出一組 x, y 後 x 即為 a 的模反元素。
 ```c++ 
 void exgcd(int a, int b, int& x, int& y) {
     if (b == 0) {
@@ -44,21 +55,41 @@ void exgcd(int a, int b, int& x, int& y) {
     y -= a / b * x;
 }
 ```
-### 快速冪法
+### **快速冪法**
+透過費馬小定理可以列出，費馬小定理可以用 (a+1)^n 以二項式展開證明看看。
+
+{{< katex >}}
+ax \equiv 1 \pmod b \\
+ax \equiv a^{b-1} \pmod b \\
+x \equiv a^{b-2} \pmod b
+{{< /katex >}}
+
 前提： `gcd(a, b) == 1`
 ```c++ 
-inline int qpow(long long a, int b, int p) {
-  int ans = 1;
+inline int qpow(long long a, int p) {
+  int b = 1;
   a = (a % p + p) % p;
-  for (; b; b >>= 1) {
-    if (b & 1) ans = (a * ans) % p;
+  for (int i = p-2; i; i >>= 1) {
+    if (i & 1) ans = (a * ans) % p;
     a = (a * a) % p;
   }
-  return ans;
+  return b;
 }
 ```
 
-### 線性求逆元
+### **線性求逆元**
+
+常遇到需要求多個數字的模反元素，此時是可以透過線性的時間算出 n 個數字的反元素。
+
+{{< katex >}}
+i^{-1} \equiv \begin{cases}
+    1,                                           & \text{if } i = 1, \\
+    -\lfloor\frac{p}{i}\rfloor (p \bmod i)^{-1}, & \text{otherwise}.
+\end{cases} \pmod p
+
+{{< /katex >}}
+
+
 ```c++ 
 inv[1] = 1;
 for (int i = 2; i <= n; ++i) {
@@ -66,48 +97,5 @@ for (int i = 2; i <= n; ++i) {
 }
 ```
 
-
-{{< tabs "uniqueid" >}}
-{{< tab "c++" >}}
-```cpp
-
-class Solution {
-public:
-    int countAnagrams(string s) {
-        vector<int> freq(26, 0);
-        s += ' ';
-        int count = 0, res = 1;
-        long long M = 1e9+7;
-        long long inv[(int)1e5+1];
-        inv[1] = 1;
-        for (int i = 2; i < (int)1e5+1; ++i)
-            inv[i] = (long long)(M - M / i) * inv[M % i] % M;
-
-        for(char ch: s) {
-            if(ch == ' ') {
-                int numer = 1;
-                while(count) {
-                    numer = (numer%M * count%M)%M;
-                    --count;
-                }
-                
-                for(int c: freq) {
-                    while(c) {
-                        numer = (numer%M * inv[c]%M)%M;
-                        --c;
-                    }
-                }
-                res = (res%M * numer)%M;
-                count = 0;
-                fill(freq.begin(), freq.end(), 0); 
-                continue;  
-            }
-            ++freq[ch-'a'];
-            ++count;
-        }
-        
-        return res;
-    }
-};
-```
-{{< /tab >}}
+ 
+ 

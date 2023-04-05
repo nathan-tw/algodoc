@@ -27,7 +27,11 @@ H(x) = x^2+19x+1
     2. 加上 `'a'-'a'+1`，得到61133。
     3. 將 `x^3`(59582) 減去，得到1551。
     
-另外 hash 很容易因為過大而溢位，實作上通常會對一個夠大的質數取餘，例如我常用的 `1e9+7`。
+{{< hint info>}}
+其實可以想成把字串視為26進位的數字，將其轉換成另一種x進位制。
+{{< /hint >}}
+
+另外 hash 很容易因為過大而溢位，實作上通常會對一個夠大的質數取餘，例如常用的 `1e9+7`。
 
 [Leetcode 28](https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/description/) 就是最基本的子字串比對，下面是我用 rolling hash 實作解答。
 {{< tabs "uniqueid" >}}
