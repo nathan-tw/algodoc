@@ -64,7 +64,11 @@ ax \equiv a^{b-1} \pmod b \\
 x \equiv a^{b-2} \pmod b
 {{< /katex >}}
 
-前提： `gcd(a, b) == 1`
+{{< hint info>}}
+用擴展歐幾里德法前提是 a, b 互質，而費馬小定理的前提則是 b 為質數。
+{{< /hint >}}
+
+
 ```c++ 
 inline int qpow(long long a, int p) {
   int b = 1;
