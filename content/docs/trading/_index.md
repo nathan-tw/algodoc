@@ -1,0 +1,6 @@
+---
+bookFlatSection: true
+---
+# Trading
+
+{{<section>}}
